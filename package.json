@@ -1,0 +1,30 @@
+{
+  "name": "paging-scroller-proto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hironobu-igawa/paging-scroller-proto.git"
+  },
+  "author": "hironobu-igawa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hironobu-igawa/paging-scroller-proto/issues"
+  },
+  "homepage": "https://github.com/hironobu-igawa/paging-scroller-proto#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-webserver": "^0.9.1",
+    "run-sequence": "^1.2.2"
+  }
+}

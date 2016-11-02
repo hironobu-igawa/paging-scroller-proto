@@ -1,0 +1,17 @@
+{
+  "name": "paging-scroller-proto",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "hironobu-igawa"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/hironobu-igawa/paging-scroller-proto",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

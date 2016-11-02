@@ -1,0 +1,68 @@
+const gulp = require('gulp');
+
+const runSequence = require('run-sequence');
+
+const webserver = require('gulp-webserver');
+
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const sourcemaps = require('gulp-sourcemaps');
+
+const clean = require('gulp-clean');
+
+gulp.task('default', ['deploy']);
+
+gulp.task('deploy', ['build', 'watch'], () => {
+  return gulp.src('app')
+    .pipe(webserver({
+      port: 3030,
+      open: 'http://localhost:3030/'
+    }));
+});
+
+gulp.task('watch', () => {
+  gulp.watch('src/scripts/**/*.js', ['build-scripts']);
+  gulp.watch(['src/index.html','src/views/**/*.html'], ['build-views']);
+});
+
+gulp.task('build', (cb) => {
+  return runSequence(
+    'build.clean',
+    ['build-scripts', 'build-views', 'build-libs'],
+    cb
+  );
+});
+
+gulp.task('build.clean', () => {
+  return gulp.src('app')
+    .pipe(clean());
+});
+
+gulp.task('build-scripts', () => {
+  return gulp.src('src/scripts/**/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(concat('app.js'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('app'));
+});
+
+gulp.task('build-views', ['build-views.clean'], () => {
+  return gulp.src(['src/views/**/*.html'])
+    .pipe(gulp.dest('app'));
+});
+
+gulp.task('build-views.clean', () => {
+  return gulp.src('app/**/*.html')
+    .pipe(clean());
+});
+
+gulp.task('build-libs', () => {
+  const libs = [
+    'bower_components/angular/angular.min.js',
+  ];
+
+  return gulp.src(libs)
+    .pipe(concat('libs.js'))
+    .pipe(gulp.dest('app'));
+});
