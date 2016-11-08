@@ -1,7 +1,5 @@
 <h1>Paging scroller!!</h1>
 
-<scroller index="main.index">
-  <p>scroller:{{scroller.index}}</p>
-  <p>main:{{main.index}}</p>
-  <country country-id="scroller.index"></country>
-</scroller>
+<div ev-scroll-prev="main.prev()" ev-scroll-next="main.next()">
+  <country country-id="main.index"></country>
+</div>

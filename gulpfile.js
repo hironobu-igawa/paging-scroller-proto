@@ -60,6 +60,7 @@ gulp.task('build-resources', () => {
 
 gulp.task('build-libs', () => {
   const libs = [
+    'bower_components/lodash/dist/lodash.min.js',
     'bower_components/jquery/dist/jquery.min.js',
     'bower_components/angular/angular.min.js',
   ];
