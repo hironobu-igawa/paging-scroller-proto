@@ -15,7 +15,7 @@ class CountryComponent {
   }
 
   get name() {
-    return this.names[this.countryId - 1];
+    return this.names[this.id - 1];
   }
 }
 
@@ -25,20 +25,20 @@ class CountryDDO {
 
     this.template = `
 <h3>{{country.name}}</h3>
-<img ng-src="{{'country/' + country.name + '.gif'}}"><br>
-<img ng-src="{{'country/' + country.name + '.gif'}}"><br>
-<img ng-src="{{'country/' + country.name + '.gif'}}"><br>
-<img ng-src="{{'country/' + country.name + '.gif'}}"><br>
-<img ng-src="{{'country/' + country.name + '.gif'}}"><br>
-<img ng-src="{{'country/' + country.name + '.gif'}}"><br>
-<img ng-src="{{'country/' + country.name + '.gif'}}"><br>
-<img ng-src="{{'country/' + country.name + '.gif'}}"><br>
-<img ng-src="{{'country/' + country.name + '.gif'}}"><br>
-<img ng-src="{{'country/' + country.name + '.gif'}}">
+<img ng-if="country.id >= 1" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
+<img ng-if="country.id >= 2" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
+<img ng-if="country.id >= 3" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
+<img ng-if="country.id >= 4" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
+<img ng-if="country.id >= 5" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
+<img ng-if="country.id >= 6" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
+<img ng-if="country.id >= 7" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
+<img ng-if="country.id >= 8" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
+<img ng-if="country.id >= 9" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
+<img ng-if="country.id >= 10" ng-src="{{'country/' + country.name + '.gif'}}" style="display:block;">
     `;
 
     this.scope = {
-      countryId: '='
+      id: '=countryId'
     };
     this.controller = CountryComponent;
     this.controllerAs = 'country';

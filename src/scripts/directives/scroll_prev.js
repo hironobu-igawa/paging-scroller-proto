@@ -46,7 +46,7 @@ class ScrollPrev {
   }
 
   get scrollPosition() {
-    return Math.round(this.scrollElement.scrollTop());
+    return Math.ceil(this.scrollElement.scrollTop());
   }
 }
 
