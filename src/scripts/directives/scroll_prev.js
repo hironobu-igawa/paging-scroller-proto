@@ -1,4 +1,4 @@
-class ScrollPrevDirective {
+class ScrollPrev {
   constructor($parse) {
     this.$parse = $parse;
   }
@@ -7,7 +7,7 @@ class ScrollPrevDirective {
     return {
       restrict: 'A',
       link: (scope, element, attr, ctrl) => ctrl.link(scope, attr),
-      controller: ScrollPrevDirective
+      controller: ScrollPrev
     };
   }
 
@@ -54,5 +54,5 @@ angular
   .module('PagingScroller')
   .directive('evScrollPrev', [
     '$parse',
-    ScrollPrevDirective.ddo
+    ScrollPrev.ddo
   ]);

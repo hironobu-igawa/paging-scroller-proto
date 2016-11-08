@@ -1,4 +1,4 @@
-class ScrollNextDirective {
+class ScrollNext {
   constructor($parse) {
     this.$parse = $parse;
   }
@@ -7,7 +7,7 @@ class ScrollNextDirective {
     return {
       restrict: 'A',
       link: (scope, element, attr, ctrl) => ctrl.link(scope, attr),
-      controller: ScrollNextDirective
+      controller: ScrollNext
     };
   }
 
@@ -54,5 +54,5 @@ angular
   .module('PagingScroller')
   .directive('evScrollNext', [
     '$parse',
-    ScrollNextDirective.ddo
+    ScrollNext.ddo
   ]);
