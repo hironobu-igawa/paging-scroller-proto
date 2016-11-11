@@ -58,15 +58,29 @@ gulp.task('build-resources', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build-libs', () => {
+gulp.task('build-libs', ['build-script-libs', 'build-style-libs']);
+
+gulp.task('build-script-libs', () => {
   const libs = [
     'bower_components/lodash/dist/lodash.min.js',
     'bower_components/jquery/dist/jquery.min.js',
     'bower_components/angular/angular.min.js',
-    'bower_components/angular-route/angular-route.min.js'
+    'bower_components/angular-route/angular-route.min.js',
+    'bower_components/angular-bootstrap/ui-bootstrap.min.js',
+    'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'
   ];
 
   return gulp.src(libs)
     .pipe(concat('libs.js'))
+    .pipe(gulp.dest('app'));
+});
+
+gulp.task('build-style-libs', () => {
+  const libs = [
+    'bower_components/bootstrap/dist/css/bootstrap.min.css'
+  ];
+
+  return gulp.src(libs)
+    .pipe(concat('libs.css'))
     .pipe(gulp.dest('app'));
 });

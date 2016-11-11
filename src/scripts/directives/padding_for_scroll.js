@@ -38,7 +38,7 @@ class PaddingForScrollDirective {
   }
 
   get outerHeight() {
-    return this.scrollElement.height();
+    return this.scrollElement.innerHeight();
   }
 
   get innerHeight() {

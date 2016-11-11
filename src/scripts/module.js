@@ -2,5 +2,6 @@ angular
   .module(
     'PagingScroller',
     [
-      'ngRoute'
+      'ngRoute',
+      'ui.bootstrap'
     ]);

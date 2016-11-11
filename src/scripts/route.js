@@ -7,6 +7,9 @@ class RouteConfig {
       .when('/part', {
         template: `<part>`
       })
+      .when('/modal', {
+        template: `<modal>`
+      })
       .otherwise('/normal');
   }
 }

@@ -41,7 +41,7 @@ class ScrollNextDirective {
     let scrollHeight = this.scrollElement.get(0) === window
       ? angular.element(document).height()
       : this.scrollElement.get(0).scrollHeight;
-    let elementHeight = this.scrollElement.height();
+    let elementHeight = this.scrollElement.innerHeight();
 
     return scrollHeight - elementHeight;
   }
