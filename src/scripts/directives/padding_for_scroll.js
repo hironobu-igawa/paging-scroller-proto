@@ -1,30 +1,34 @@
-class PaddingForScroll {
+class PaddingForScrollDirective {
   static ddo() {
     return {
       restrict: 'E',
-      link: (scope, element, attr, ctrl) => ctrl.link(scope, element),
-      controller: PaddingForScroll
+      link: (scope, element, attr, ctrls) => ctrls[0].link(scope, element, ctrls),
+      require: ['paddingForScroll', '?^scrollArea'],
+      controller: PaddingForScrollDirective
     };
   }
 
-  link(scope, element) {
+  link(scope, element, ctrls) {
     this.element = element;
-    this.scrollElement = angular.element(window);
+    this.scrollAreaDirective = ctrls[1];
+
     this.element.css('display', 'block');
 
     scope.$watch(() => {
       this.element.height(0);
       this.element.hide();
 
-      if (this.scrollHeight > this.outerHeight) {
-        console.log('Hide padding');
-        return;
-      }
+      if (this.scrollHeight > this.outerHeight) return;
 
-      this.element.height(this.scrollHeight - this.innerHeight + 1);
+      this.element.height(this.scrollHeight - this.innerHeight + 10);
       this.element.show();
-      console.log(`Show padding.`);
     });
+  }
+
+  get scrollElement() {
+    return this.scrollAreaDirective
+      ? this.scrollAreaDirective.element
+      : angular.element(window);
   }
 
   get scrollHeight() {
@@ -48,6 +52,11 @@ class PaddingForScroll {
   }
 }
 
+/**
+ * @ngdoc directive
+ * @name paddingForScroll
+ * @restrict E
+ */
 angular
   .module('PagingScroller')
-  .directive('paddingForScroll', PaddingForScroll.ddo);
+  .directive('paddingForScroll', PaddingForScrollDirective.ddo);

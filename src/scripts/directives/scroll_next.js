@@ -1,4 +1,4 @@
-class ScrollNext {
+class ScrollNextDirective {
   constructor($parse) {
     this.$parse = $parse;
   }
@@ -6,13 +6,14 @@ class ScrollNext {
   static ddo() {
     return {
       restrict: 'A',
-      link: (scope, element, attr, ctrl) => ctrl.link(scope, attr),
-      controller: ScrollNext
+      link: (scope, element, attr, ctrls) => ctrls[0].link(scope, attr, ctrls),
+      require: ['evScrollNext', '?^scrollArea'],
+      controller: ScrollNextDirective
     };
   }
 
-  link(scope, attr) {
-    this.scrollElement = angular.element(window);
+  link(scope, attr, ctrls) {
+    this.scrollElement = ctrls[1] ? ctrls[1].element : angular.element(window);
 
     let fn = this.$parse(attr['evScrollNext'], null, false);
     let deregistration = this.onNext((event) => {
@@ -50,9 +51,14 @@ class ScrollNext {
   }
 }
 
+/**
+ * @ngdoc directive
+ * @name evScrollNext
+ * @restrict A
+ */
 angular
   .module('PagingScroller')
   .directive('evScrollNext', [
     '$parse',
-    ScrollNext.ddo
+    ScrollNextDirective.ddo
   ]);

@@ -1,1 +1,6 @@
-angular.module('PagingScroller', []);
+angular
+  .module(
+    'PagingScroller',
+    [
+      'ngRoute'
+    ]);

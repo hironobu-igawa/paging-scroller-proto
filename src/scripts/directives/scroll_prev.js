@@ -1,4 +1,4 @@
-class ScrollPrev {
+class ScrollPrevDirective {
   constructor($parse) {
     this.$parse = $parse;
   }
@@ -6,13 +6,14 @@ class ScrollPrev {
   static ddo() {
     return {
       restrict: 'A',
-      link: (scope, element, attr, ctrl) => ctrl.link(scope, attr),
-      controller: ScrollPrev
+      link: (scope, element, attr, ctrls) => ctrls[0].link(scope, attr, ctrls),
+      require: ['evScrollPrev', '?^scrollArea'],
+      controller: ScrollPrevDirective
     };
   }
 
-  link(scope, attr) {
-    this.scrollElement = angular.element(window);
+  link(scope, attr, ctrls) {
+    this.scrollElement = ctrls[1] ? ctrls[1].element : angular.element(window);
 
     let fn = this.$parse(attr.evScrollPrev, null, false);
     let deregistration = this.onPrev((event) => {
@@ -50,9 +51,14 @@ class ScrollPrev {
   }
 }
 
+/**
+ * @ngdoc directive
+ * @name evScrollPrev
+ * @restrict A
+ */
 angular
   .module('PagingScroller')
   .directive('evScrollPrev', [
     '$parse',
-    ScrollPrev.ddo
+    ScrollPrevDirective.ddo
   ]);

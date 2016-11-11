@@ -1,8 +1,17 @@
-class MainComponent {
+class NormalComponent {
   constructor() {
     this.index = 1;
     this.min = 1;
     this.max = 10;
+  }
+
+  static ddo() {
+    return {
+      restrict: 'E',
+      templateUrl: 'components/routes/normal.html',
+      controller: NormalComponent,
+      controllerAs: 'normal'
+    };
   }
 
   prev() {
@@ -24,15 +33,10 @@ class MainComponent {
   }
 }
 
-class MainDDO {
-  static ddo() {
-    return {
-      restrict: 'E',
-      controller: MainComponent,
-      controllerAs: 'main',
-      templateUrl: 'main.html'
-    }
-  }
-}
-
-angular.module('PagingScroller').directive('main', MainDDO.ddo);
+/**
+ * @ngdoc component
+ * @name normal
+ */
+angular
+  .module('PagingScroller')
+  .directive('normal', NormalComponent.ddo);

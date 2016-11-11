@@ -63,6 +63,7 @@ gulp.task('build-libs', () => {
     'bower_components/lodash/dist/lodash.min.js',
     'bower_components/jquery/dist/jquery.min.js',
     'bower_components/angular/angular.min.js',
+    'bower_components/angular-route/angular-route.min.js'
   ];
 
   return gulp.src(libs)
