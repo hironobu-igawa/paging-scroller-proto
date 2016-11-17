@@ -15,7 +15,7 @@ gulp.task('default', ['deploy']);
 gulp.task('deploy', ['build', 'watch'], () => {
   return gulp.src('app')
     .pipe(webserver({
-      port: 3030,
+      port: 3000,
       open: 'http://localhost:3030/'
     }));
 });
